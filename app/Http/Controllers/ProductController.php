@@ -22,7 +22,7 @@ class ProductController extends Controller
             'product_category_id' => 'required',
             'online_shop_id' => 'required',
             'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:8192',
+            'image' => 'required|max:8192',
             'description' => 'nullable|string',
         ]);
 
@@ -49,7 +49,7 @@ class ProductController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->back()->with('success', 'Product added successfully!');
+        return view('products.index');
     }
 
 

@@ -10,8 +10,8 @@ use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\UsersideAboutController;
 use App\Http\Controllers\UsersideContactController;
 use App\Http\Controllers\UsersideHomeController;
+use App\Http\Controllers\UsersideOnlineShopController;
 use App\Http\Controllers\UsersideProductController;
-use App\Http\Controllers\UsersideServiceController;
 use Illuminate\Support\Facades\Route;
 
 //=============================================== user pages  ================================================
@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [UsersideHomeController::class, 'index'])->name('home');
 Route::get('/about', [UsersideAboutController::class, 'index'])->name('about');
 Route::get('/user-product', [UsersideProductController::class, 'index'])->name('user-products');
-Route::get('/user-online-shop', [UsersideProductController::class, 'index'])->name('user-online-shops');
+Route::get('/user-online-shop', [UsersideOnlineShopController::class, 'index'])->name('user-online-shops');
+Route::post('/subscribe', [SubscriberController::class, 'store'])->name('subscribe');
 Route::get('/contact', [UsersideContactController::class, 'index'])->name('contact');
 
 // Route::get('/products', [UsersideProductController::class, 'index'])->name('products');
@@ -31,10 +32,8 @@ Route::post('/login', [AuthController::class, 'login']);
 
 // Protected routes
 Route::middleware('auth')->group(function () {
-    
+
     Route::get('/dashboard', [AuthController::class, 'index'])->name('dashboard.index');
-    Route::get('/subscribers/create', [SubscriberController::class, 'create'])->name('subscribers.create');
-    Route::post('/subscribers', [SubscriberController::class, 'store'])->name('subscribers.store');
     Route::get('/subscribers/read', [SubscriberController::class, 'index'])->name('subscribers.index');
 
     Route::get('/admins/create', [AdminController::class, 'create'])->name('admins.create');

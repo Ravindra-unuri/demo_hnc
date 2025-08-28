@@ -16,8 +16,8 @@ class OnlineShopController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:8192',
-            'link' => 'required|url',
+            'image' => 'nullable|max:8192',
+            'link' => 'required|url'
         ]);
 
         $imageName = null;
@@ -31,13 +31,13 @@ class OnlineShopController extends Controller
             }
 
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $imageName); // save directly to public/products
+            $image->move($destinationPath, $imageName);
         }
 
         OnlineShop::create([
             'name' => $request->name,
             'image' => $imageName,
-            'link' => $request->link,
+            'link' => $request->link
         ]);
 
         return back()->with('success', 'Online Shop added successfully!');

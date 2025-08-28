@@ -19,6 +19,9 @@
             </div>
         @endif
 
+        @if ($errors->any())
+            <p style="color:red;font-size:14px;text-align:center;">{{ $errors->first() }}</p>
+        @endif
         <!-- enctype added here -->
         <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data" class="space-y-5">
             @csrf

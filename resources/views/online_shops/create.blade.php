@@ -20,9 +20,12 @@
             </div>
         @endif
 
-        <form action="{{ route('online_shops.store') }}" method="POST" class="space-y-5">
-            @csrf
+        @if ($errors->any())
+            <p style="color:red;font-size:14px;text-align:center;">{{ $errors->first() }}</p>
+        @endif
 
+        <form action="{{ route('online_shops.store') }}" method="POST" enctype="multipart/form-data" class="space-y-5">
+            @csrf
             {{-- Shop Name --}}
             <div>
                 <label class="block text-sm font-semibold text-gray-700">Shop Name:</label>

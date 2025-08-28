@@ -32,14 +32,14 @@
         {{-- <div class="grid grid-cols-12 gap-6"> --}}
         <div class="grid grid-cols-1 gap-6">
             <div class="table-container bg-white p-4 rounded-lg shadow-md">
-               
+
                 <table class="min-w-full border border-gray-200 rounded-lg overflow-hidden">
                     <thead class="bg-gray-100 text-gray-700">
                         <tr>
                             <th class="px-4 py-2 border">ID</th>
                             <th class="px-4 py-2 border">Plateform Name</th>
+                            <th class="px-4 py-2 border min-w-[250px]">Image</th>
                             <th class="px-4 py-2 border">Link</th>
-                            {{-- <th class="px-4 py-2 border">Image</th> --}}
                             <th class="px-4 py-2 border">Created At</th>
                         </tr>
                     </thead>
@@ -48,8 +48,15 @@
                             <tr class="hover:bg-gray-50">
                                 <td class="px-4 py-2 border">{{ $onlineshop->id }}</td>
                                 <td class="px-4 py-2 border">{{ $onlineshop->name }}</td>
+                                <td class="px-4 py-2 border min-w-[250px]">
+                                    @if ($onlineshop->image)
+                                        <img src="{{ asset('onlineShops/' . $onlineshop->image) }}"
+                                            alt="{{ $onlineshop->name }}" class="max-w-[200px] h-auto rounded">
+                                    @else
+                                        <span class="text-gray-400">No Image</span>
+                                    @endif
+                                </td>
                                 <td class="px-4 py-2 border">{{ $onlineshop->link }}</td>
-                                {{-- <td class="px-4 py-2 border">{{ $onlineshop->link }}</td> --}}
                                 <td class="px-4 py-2 border">{{ $onlineshop->created_at->format('d M Y') }}</td>
                             </tr>
                         @endforeach
